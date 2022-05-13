@@ -1,8 +1,18 @@
-plugins {
-    id 'org.springframework.boot' version '2.6.7'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
+buildscript {
+    ext {
+        springBoot = '2.6.7'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBoot}")
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.brazdore'
 version = '0.0.1-SNAPSHOT'
@@ -11,8 +21,6 @@ sourceCompatibility = '11'
 repositories {
     mavenCentral()
 }
-
-def springBoot = '2.6.7'
 
 dependencies {
     implementation(["org.springframework.boot:spring-boot-gradle-plugin:${springBoot}",
