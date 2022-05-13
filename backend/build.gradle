@@ -1,8 +1,18 @@
-plugins {
-    id 'org.springframework.boot' version '2.6.7'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
+buildscript {
+    ext {
+        springBootVersion = '2.3.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.brazdore'
 version = '0.0.1-SNAPSHOT'
@@ -20,14 +30,6 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-}
-
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'com.brazdore.dsmovie.DsmovieApplication'
-        )
-    }
 }
 
 tasks.named('test') {
